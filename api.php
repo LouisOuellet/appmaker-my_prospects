@@ -20,14 +20,11 @@ class my_prospectsAPI extends organizationsAPI {
 				// Init Result
 				foreach($leads as $key => $lead){
 					$isProspect = false;
-					$calls = $this->Auth->query('SELECT * FROM `calls` WHERE `organization` = ? AND `status` <= ?',
-						$lead['id'],
-						2
-					)->fetchAll();
+					$calls = $this->Auth->query('SELECT * FROM `calls` WHERE `organization` = ? AND `status` <= ?', $lead['id'], 2 )->fetchAll();
 					if($calls != null){
 						$calls = $calls->all();
 						foreach($calls as $call){
-							if(strtotime($call['date'].' '.$call['time']) <= strtotime('tomorrow')){ $isProspect = true;break; }
+							if(strtotime($call['date'].' '.$call['time']) <= strtotime('tomorrow')){ $isProspect = true; break; }
 						};
 					}
 					if(!$isProspect){ unset($leads[$key]); }
