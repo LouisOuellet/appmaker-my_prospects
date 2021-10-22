@@ -25,10 +25,15 @@ class my_prospectsAPI extends organizationsAPI {
 						$calls = $calls->all();
 						foreach($calls as $call){
 							if(strtotime($call['date'].' '.$call['time']) <= strtotime('tomorrow')){
-								if($lead['id'] == $call['organization'] && $call['status'] <= 2){
-									if($call['assigned_to'] == $this->Auth->User['id']){ $isProspect = true; break; }
+								$relations = $this->getRelationships('calls', $call['id']);
+								foreach($relations as $id => $relationships){
+									foreach($relationships as $relationship){
+										if($relationship['relationship'] == 'organizations' && $relationship['link_to'] == $lead['id']){ $isProspect = true; break; }
+									}
+									if($isProspect){ break; }
 								}
 							}
+							if($isProspect){ break; }
 						};
 					}
 					if(!$isProspect){ unset($leads[$key]); }
