@@ -25,7 +25,9 @@ class my_prospectsAPI extends organizationsAPI {
 						$calls = $calls->all();
 						foreach($calls as $call){
 							if(strtotime($call['date'].' '.$call['time']) <= strtotime('tomorrow')){
-								if($call['assigned_to'] == $this->Auth->User['id']){ $isProspect = true; break; }
+								if($lead['id'] == $call['organization'] && $call['status'] <= 2){
+									if($call['assigned_to'] == $this->Auth->User['id']){ $isProspect = true; break; }
+								}
 							}
 						};
 					}
