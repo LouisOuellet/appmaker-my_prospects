@@ -20,7 +20,7 @@ class my_prospectsAPI extends organizationsAPI {
 				// Init Result
 				foreach($leads as $key => $lead){
 					$isProspect = false;
-					$calls = $this->Auth->query('SELECT * FROM `calls` WHERE `organization` = ? AND `status` <= ? AND `assigned_to` <= ?', $lead['id'], 2,$this->Auth->User['id'] )->fetchAll();
+					$calls = $this->Auth->query('SELECT * FROM `calls` WHERE `organization` = ? AND `status` <= ? AND `assigned_to` = ?', $lead['id'], 2,$this->Auth->User['id'] )->fetchAll();
 					if($calls != null){
 						$calls = $calls->all();
 						foreach($calls as $call){
