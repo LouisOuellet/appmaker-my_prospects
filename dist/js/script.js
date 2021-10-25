@@ -10,12 +10,6 @@ API.Plugins.my_prospects = {
 	forms:{
 		create:{
 			0:"name",
-			contact:{
-			  0:"first_name",
-			  1:"middle_name",
-			  2:"last_name",
-			  3:"job_title",
-			},
 			company_information:{
 				0:"address",
 				1:"city",
@@ -28,15 +22,11 @@ API.Plugins.my_prospects = {
 				8:"email",
 				9:"website",
 			},
-			extra:{
-				0:"tags",
-			},
 		},
 		update:{
 			0:"name",
 			1:"business_num",
-			2:"code",
-			contact_information:{
+			company_information:{
 				0:"address",
 				1:"city",
 				2:"zipcode",
@@ -47,9 +37,6 @@ API.Plugins.my_prospects = {
 				7:"fax",
 				8:"email",
 				9:"website",
-			},
-			extra:{
-				0:"tags",
 			},
 		},
 	},
